@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card mt-4">
+    <div class="card-body">
+        <h2 class="card-title">Detalles del Viaje</h2>
+        <p><strong>Destino:</strong> {{ viaje.destino }}</p>
+        <p><strong>Descripción:</strong> {{ viaje.descripcion }}</p>
+        <p><strong>Fecha:</strong> {{ viaje.fecha }}</p>
+        <p><strong>Kilómetros:</strong> {{ viaje.kilometros }}</p>
+        <p><strong>Dificultad:</strong> {{ viaje.dificultad }}</p>
+        <p><strong>Guía:</strong> {{ viaje.guia }}</p>
+        <h5 class="mt-3">Pilotos:</h5>
+        <ul class="list-group">
+            {% for piloto in viaje.pilotos.all %}
+                <li class="list-group-item">{{ piloto.nombre }} {{ piloto.apellido }}</li>
+            {% empty %}
+                <li class="list-group-item text-muted">No hay pilotos inscriptos</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'listar_viajes' %}" class="btn btn-primary mt-3">Volver a la lista</a>
+    </div>
+</div>
+{% endblock %}

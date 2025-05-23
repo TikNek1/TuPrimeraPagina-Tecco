@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center mb-4">Lista de Guías</h1>
+
+<div class="list-group">
+    {% for guia in guias %}
+        <div class="list-group-item">
+            <h5>{{ guia.nombre }} {{ guia.apellido }}</h5>
+            <p class="mb-1">
+                <strong>DNI:</strong> {{ guia.dni }}<br>
+                <strong>Email:</strong> {{ guia.email }}<br>
+                <strong>Teléfono:</strong> {{ guia.telefono }}
+            </p>
+
+            {% if guia.viajes.all %}
+                <strong>Viajes:</strong><br>
+                {% for viaje in guia.viajes.all %}
+                    <a href="{% url 'detalle_viaje' viaje.id %}" class="badge bg-primary text-decoration-none me-1 mb-1">
+                        {{ viaje.destino }} - {{ viaje.fecha|date:"m/Y" }}
+                    </a>
+                {% endfor %}
+            {% else %}
+                <p class="text-muted">No participa en ningún viaje.</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
