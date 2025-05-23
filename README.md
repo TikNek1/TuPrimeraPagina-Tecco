@@ -1,56 +1,61 @@
 # TikNek Viajes - Plataforma Web
 
-Este proyecto es una página web para la empresa **TikNek Viajes**, que organiza y ofrece viajes en moto. La plataforma permite a los usuarios explorar información sobre los viajes planificados, los pilotos y los guías que participan en ellos. Además, los administradores y usuarios del grupo TikNek tienen acceso a funcionalidades adicionales.
+Este proyecto es una página web para la empresa ficticia **TikNek Viajes**, que organiza y ofrece viajes en moto. La plataforma permite explorar información sobre los viajes planificados, los pilotos y los guías. Además, los administradores o usuarios del grupo *TikNek* pueden crear nuevos viajes desde la web y los demás datos desde el menu **admin**.
+
+---
 
 ## Funcionalidades principales
 
-### Para usuarios no autenticados:
+### Usuarios no autenticados:
 - Ver la lista de viajes planificados.
 - Consultar detalles de cada viaje.
 - Ver la lista de pilotos y guías.
 
-### Para usuarios autenticados:
-- **Usuarios administradores o del grupo TikNek**:
+### Usuarios autenticados:
+- Iniciar sesión desde la página de login.
+- Si son administradores o pertenecen al grupo **TikNek**, podrán:
   - Crear nuevos viajes desde la interfaz web.
-  - Acceder al menú de administración de Django para gestionar datos.
+  - Acceder al panel de administración de Django (`/admin`).
 
-## Estructura del proyecto
-Practico_3/ ├── TikNek_Viajes/ │ ├── settings.py # Configuración del proyecto Django │ ├── urls.py # Configuración de rutas principales │ ├── wsgi.py # Configuración WSGI │ ├── asgi.py # Configuración ASGI │ └── templates/ # Plantillas base del proyecto ├── viajes/ │ ├── models.py # Modelos de datos (Viaje, Piloto, Guía) │ ├── views.py # Vistas para manejar la lógica de negocio │ ├── urls.py # Rutas específicas de la app "viajes" │ ├── templates/ # Plantillas específicas de la app │ │ ├── lista_viajes.html │ │ ├── lista_guias.html │ │ ├── lista_pilotos.html │ │ └── detalle_viaje.html │ └── forms.py # Formularios para crear y editar viajes └── db_viajes.sqlite3 # Base de datos SQLite
+---
 
+## Usuarios disponibles para pruebas
+
+| Rol              | Usuario     | Contraseña |
+|------------------|-------------|------------|
+| Superusuario     | `nicotecco` | `coder123` |
+| Usuario TikNek   | `profe`     | `coder123` |
+
+> El usuario `profe` pertenece al grupo *TikNek* y tiene permisos para crear viajes desde la interfaz.
+
+---
 
 ## Requisitos
 
-- **Python**: 3.8 o superior.
-- **Django**: 4.2 o superior.
-- Dependencias adicionales:
-  - `widget_tweaks` (para mejorar la apariencia de los formularios).
+- Python 3.8 o superior
+- Django 4.2 o superior
+- Paquete adicional:
+  - `django-widget-tweaks`
 
-## Configuración e instalación
+---
 
-1. Clona el repositorio y navega al directorio del proyecto:
-   ```bash
-   git clone <URL_DEL_REPOSITORIO>
-   cd Practico_3
+## Estructura
 
-2. Crea un entorno virtual e instala las dependencias
-    python -m venv _myenv
-    source _myenv/bin/activate  # En Windows: _myenv\Scripts\activate
-    pip install -r requirements.txt
-
-3. Realiza las migraciones para configurar la base de datos:
-    python manage.py migrate
-
-4. Inicia el servidor de desarrollo:
-    python manage.py runserver
-
-5. Accede a la aplicación en tu navegador en http://127.0.0.1:8000.
-
-## Cómo usar la aplicación
-1. Usuarios no autenticados:
-Navega por la página para explorar los viajes, pilotos y guías.
-
-2. Usuarios autenticados:
-Inicia sesión desde la página de login.
-Si eres administrador o perteneces al grupo TikNek, podrás:
-Crear nuevos viajes desde la página de lista de viajes.
-Acceder al menú de administración de Django en /admin.
+TuPrimeraPagina-Tecco/
+├── static/img               # Imagenes/logo que se usarán en la Web
+├── TikNek_Viajes/
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py / asgi.py
+│   └── templates/           # Plantillas base del proyecto
+├── viajes/
+│   ├── models.py            # Modelos: Viaje, Piloto, Guía
+│   ├── views.py             # Lógica de negocio
+│   ├── urls.py              # Rutas específicas de la app
+│   ├── forms.py             # Formularios para viajes
+│   └── templates/
+│       ├── lista_viajes.html
+│       ├── lista_guias.html
+│       ├── lista_pilotos.html
+│       └── detalle_viaje.html
+└── db_viajes.sqlite3        # Base de datos
